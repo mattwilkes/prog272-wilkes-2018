@@ -8,21 +8,26 @@ import './index.css';
 
 const address = addresses[0];
 
-describe('Naive Address Edit Mount Jest Suite', function () {
+describe('Address tests', function() {
 
-    it('renders and displays the default last name', () => {
-        const wrapper = mount(<Address address={address}  />);
-        const welcome = <p className='App-intro'>lastName: unknown</p>;
-        elfDebugEnzyme.getIndex(wrapper, 'div#addressShowRender', 1, true);
-        expect(wrapper.contains(welcome)).toEqual(true);
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Address/>, div);
+        ReactDOM.unmountComponentAtNode(div);
     });
 
-    it('renders button click message for first name', () => {
-        const wrapper = mount(<Address address={address}/>);
-        const patty = <p className='App-intro'>lastName: Murray</p>;
-        wrapper.find('button#showAddressClick').simulate('click');
-        elfDebugEnzyme.getIndex(wrapper, 'div#addressShowRender', 1, true);
-        expect(wrapper.contains(patty)).toEqual(true);
+    it('renders and displays the default first name', () => {
+        const wrapper = shallow(<Address/>);
+        //console.log(wrapper.find('AddressShow').prop('address'));
+        expect(wrapper.find('AddressShow').prop('address').firstName).toEqual('unknown');
     });
 
+    it('renders state of firstName after button click', () => {
+        const wrapper = shallow(<Address addressList={addresses}/>);
+        wrapper.instance().setAddress();
+        setImmediate(() => {
+            wrapper.update();
+            expect(wrapper.find('AddressShow').prop('address').firstName).toEqual('Patty');
+        });
+    });
 });

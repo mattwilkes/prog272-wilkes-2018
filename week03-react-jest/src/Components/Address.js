@@ -3,28 +3,37 @@ import addresses from '../address-list';
 import AddressShow from '../Components/AddressShow'
 
 class Address extends Component {
+
     constructor(props) {
         super(props);
 
         this.addressIndex=0;
-        const address = addresses[this.addressIndex];
         this.state = {
-            address: address
+            address: addresses[this.addressIndex]
         };
-        this.quiet = true;
+        this.debug = true;
     }
+    onAddressChange = (event) => {
+        this.addressIndex = 1;
 
-    render() {
+        this.setState({
+            address: addresses[this.addressIndex]
+        })
+    };
 
-        if (!this.quiet) { console.log("ADDRESS RENDER"); }
-        return (
-            <div className="App">
-                <AddressShow address={this.state.address}/>
-
-            </div>
-        );
-    }
+render() {
+    if (this.debug) { console.log("ADDRESS RENDER"); }
+    return (
+        <div className="App">
+            <AddressShow
+                address={this.state.address}
+                setAddress={this.setState}
+            />
+        </div>
+    );
+}
 
 
 }
+
 export default Address;
