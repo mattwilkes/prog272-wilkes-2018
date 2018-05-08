@@ -8,7 +8,7 @@ import '../App.css';
 class AddressShow extends Component {
     constructor(props) {
         super(props);
-        this.debug = true;
+        this.debug = false;
         if (this.debug) {
             console.log('SHOW ADDRESS CONSTRUCTOR', this.props.address);
         }
