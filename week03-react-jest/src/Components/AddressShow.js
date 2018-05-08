@@ -24,13 +24,13 @@ class AddressShow extends Component {
         return (
             <div className="App">
 
-                <button id="showAddressClick" onClick={this.props.onAddressChange}>Show Address</button>
                 <p className="App-intro">First Name: {this.props.address.firstName}</p>
                 <p className="App-intro">Last Name: {this.props.address.lastName}</p>
                 <p className="App-intro">Street: {this.props.address.address}</p>
                 <p className="App-intro">City: {this.props.address.city}</p>
                 <p className="App-intro">State: {this.props.address.state}</p>
                 <p className="App-intro">Zip Code: {this.props.address.zip}</p>
+                <button id="showAddressClick" onClick={this.props.setAddress}>Show Address</button>
 
 
             </div>

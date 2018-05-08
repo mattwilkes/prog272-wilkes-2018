@@ -6,14 +6,17 @@ class Address extends Component {
 
     constructor(props) {
         super(props);
-
+        this.debug = false;
         this.addressIndex=0;
         this.state = {
             address: addresses[this.addressIndex]
         };
         this.debug = true;
     }
-    onAddressChange = (event) => {
+    setAddress = () => {
+        if(this.debug){
+            console.log("setAddress Called")
+        }
         this.addressIndex = 1;
 
         this.setState({
@@ -27,7 +30,7 @@ render() {
         <div className="App">
             <AddressShow
                 address={this.state.address}
-                setAddress={this.setState}
+                setAddress={this.setAddress}
             />
         </div>
     );

@@ -6,4 +6,6 @@ import logo from '../logo.svg';
     <h2 className="App-title">Welcome to React</h2>
 </header>
 
+export default
+
 
