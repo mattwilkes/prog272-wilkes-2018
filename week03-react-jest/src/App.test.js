@@ -8,7 +8,6 @@ import { configure, shallow } from 'enzyme';
 configure({ adapter: new Adapter() });
 
 describe('App Test', function() {
-
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<App />, div);
@@ -33,5 +32,4 @@ describe('App Test', function() {
         wrapper.find('#getFile').simulate('click');
         expect(wrapper.contains(nineSign)).toBe(true);
     });
-
 });

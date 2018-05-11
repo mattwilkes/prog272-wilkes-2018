@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 import AddressShow from './Components/AddressShow';
 
 import addresses from './address-list';
 
 describe('AddressShow Shallow Suite', function() {
-
     const debug = false;
 
     const addressTest = {
@@ -23,23 +21,25 @@ describe('AddressShow Shallow Suite', function() {
         tollfree: '(866) 481-9186'
     };
 
-
     const getIndex = (wrapper, index, talkToMe) => {
         if (debug || talkToMe) {
-            const ninep = wrapper.find('div#addressShow').childAt(index).debug();
+            const ninep = wrapper
+                .find('div#addressShow')
+                .childAt(index)
+                .debug();
             console.log('NINEP:', ninep);
         }
     };
 
     const defaultFieldTest = (name, index, talkToMe) => {
-        const wrapper = shallow(<AddressShow address={addresses[0]}/>);
+        const wrapper = shallow(<AddressShow address={addresses[0]} />);
         const welcome = <p className="App-intro">{name}</p>;
         getIndex(wrapper, index, talkToMe);
         expect(wrapper.contains(welcome)).toEqual(true);
     };
 
     const afterClickFieldTest = (name, index, talkToMe) => {
-        const wrapper = shallow(<AddressShow address={addresses[1]}/>);
+        const wrapper = shallow(<AddressShow address={addresses[1]} />);
         const welcome = <p className="App-intro">{name}</p>;
         getIndex(wrapper, index, talkToMe);
         expect(wrapper.contains(welcome)).toEqual(true);
