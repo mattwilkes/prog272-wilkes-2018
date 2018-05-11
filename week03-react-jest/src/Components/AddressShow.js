@@ -41,6 +41,6 @@ class AddressShow extends Component {
 }
 AddressShow.propTypes = {
     address: PropTypes.object.string,
-    setAddress : PropTypes.object,
+    setAddress: PropTypes.object
 };
 export default AddressShow;
