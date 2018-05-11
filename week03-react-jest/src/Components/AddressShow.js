@@ -20,7 +20,7 @@ class AddressShow extends Component {
     }
 
     render() {
-        this.log("SHOW ADDRESS RENDER", this.props);
+        this.log('SHOW ADDRESS RENDER', this.props);
         return (
             <div className="App">
 

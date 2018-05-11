@@ -4,7 +4,6 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 import addresses from './address-list';
-import AddressShow from './Components/AddressShow';
 import Address from './Components/Address';
 
 describe('Address tests', function() {

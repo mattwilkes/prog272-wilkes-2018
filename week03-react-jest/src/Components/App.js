@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
 import '../App.css';
-import Address from './Address'
+import Address from './Address';
 import Headers from './Headers';
 import GetFile from './GetFile';
 import '../menu.css';

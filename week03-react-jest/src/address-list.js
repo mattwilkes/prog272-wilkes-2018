@@ -1,6 +1,9 @@
+import AddressShow from "./Components/AddressShow";
 
 
-
+AddressShow.propTypes ={
+    firstName: 
+}
 const unknown = 'unknown';
 const addresses = [
     {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import addresses from '../address-list';
-import AddressShow from '../Components/AddressShow'
+import AddressShow from '../Components/AddressShow';
 
 class Address extends Component {
 
@@ -15,26 +15,25 @@ class Address extends Component {
     }
     setAddress = () => {
         if(this.debug){
-            console.log("setAddress Called")
+            console.log('setAddress Called');
         }
         this.addressIndex = 1;
 
         this.setState({
             address: addresses[this.addressIndex]
-        })
+        });
     };
-
-render() {
-    if (this.debug) { console.log("ADDRESS RENDER"); }
-    return (
-        <div className="App">
-            <AddressShow
-                address={this.state.address}
-                setAddress={this.setAddress}
-            />
-        </div>
-    );
-}
+    render() {
+        if (this.debug) { console.log('ADDRESS RENDER'); }
+        return (
+            <div className="App">
+                <AddressShow
+                    address={this.state.address}
+                    setAddress={this.setAddress}
+                />
+            </div>
+        );
+    }
 
 
 }
