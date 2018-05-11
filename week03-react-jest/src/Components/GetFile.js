@@ -5,13 +5,13 @@ import React, { Component } from 'react';
 class GetFile extends Component {
     getFileName = () => {
         console.log('getFile called.');
-        this.setState({file: 'url-file.js'});
+        this.setState({file: 'url-file.js'})
     };
     constructor() {
         super();
         this.state = {
             file: 'unknown',
-        };
+        }
     }
     render() {
         return (
@@ -25,4 +25,4 @@ class GetFile extends Component {
         );
     }
 }
-export default GetFile;
+export default GetFile
