@@ -13,7 +13,7 @@ class App extends Component {
                 <div className="App">
                     <Headers />
                     <Route exact path="/" component={Address} />
-                    <Route path="/get-file" component={GetFile} />
+                    <Route exact path="/get-file" component={GetFile} />
                 </div>
             </BrowserRouter>
         );

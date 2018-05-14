@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../App.css';
+import RaisedButton from 'material-ui/RaisedButton';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import styles from './elf-styles';
 
 class AddressShow extends Component {
     constructor(props) {
@@ -32,9 +35,14 @@ class AddressShow extends Component {
                 <p className="App-intro">City: {this.props.address.city}</p>
                 <p className="App-intro">State: {this.props.address.state}</p>
                 <p className="App-intro">Zip Code: {this.props.address.zip}</p>
-                <button id="showAddressClick" onClick={this.props.setAddress}>
-                    Show Address
-                </button>
+                <RaisedButton
+                    label="Set Address"
+                    labelPosition="before"
+                    primary={true}
+                    icon={<ActionAndroid />}
+                    style={styles.button}
+                    onClick={this.props.setAddress}
+                />
             </div>
         );
     }
