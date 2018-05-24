@@ -36,12 +36,24 @@ class AddressShow extends Component {
                 <p className="App-intro">State: {this.props.address.state}</p>
                 <p className="App-intro">Zip Code: {this.props.address.zip}</p>
                 <RaisedButton
+                    id="setAddress"
+                    primary={true}
+                    onClick={(event) => this.props.setAddress(-1, event)}
+                    label = "Back"
+                />
+                <RaisedButton
                     label="Set Address"
                     labelPosition="before"
                     primary={true}
                     icon={<ActionAndroid />}
                     style={styles.button}
                     onClick={this.props.setAddress}
+                />
+                <RaisedButton
+                    id="setAddress"
+                    primary={true}
+                    onClick={(event) => this.props.setAddress(1, event)}
+                    label = "Next"
                 />
             </div>
         );

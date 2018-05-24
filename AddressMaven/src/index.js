@@ -10,7 +10,7 @@ ReactDOM.render(
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div>
             <App />,
-        </div>,
+        </div>
     </MuiThemeProvider>,
     document.getElementById('root')
 );

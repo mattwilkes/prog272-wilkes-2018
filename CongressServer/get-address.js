@@ -1,22 +1,14 @@
+
+
 const fs=require("fs");
 const debug = require('debug')('get-address');
 
+
 debug('Testing debug');
 
-function readFile(fileName, callback) {
-    'use strict';
 
-    return new Promise(function(resolve, reject) {
-        fs.readFile(fileName, 'utf8', function(err, fileContents) {
-            if (err) {
-                reject(err);
-            }
-            resolve({
-                'result': fileContents
-            });
-        });
-    });
-}
+
+
 
 function getAddress(value, char) {
     'use strict';
@@ -63,11 +55,13 @@ readFile('govtrack-address.json')
             writeIt('state', json.objects[i].state);
             writeIt('zip', getZip(json.objects[i].extra.address, ' '));
             writeIt('phone', json.objects[i].phone);
-            writeIt('website', json.objects[i].website);
+            writeIt('website', json.objects[i].website);https://www.govtrack.us/api/v2/role
             writeIt('email', '');
             writeIt('contact', json.objects[i].extra.contact_form || '', true);
             const close = i < jsonLength - 1 ? '\t},' : '\t}\n]';
             console.log(close);
+
+
         }
         debug('all done');
     })
