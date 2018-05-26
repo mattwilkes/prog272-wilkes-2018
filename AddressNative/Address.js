@@ -10,47 +10,48 @@ import 'whatwg-fetch'
 export default class Address extends React.Component {
     constructor() {
         super();
-        this.debug = false;
-        this.canceled = false;
             this.addressIndex = 0;
-            this.addressList = [{}];
+            this.addressList= [{}],
             this.state = {
+
                 address: tempAddressList[this.addressIndex]
         };
-        this.getAddressList =this.getAddressList.bind(this);
 
 
     }
+    componentDidMount(){
+    this.getAddressList =this.getAddressList.bind(this);
+
+}
 
     getAddressList = () => {
-        const that = this;
         return fetch('localhost:30026/address-list')
-            .then(response => response.json())
-            .then(AddressListFromServer => {
+            .then((response) => response.json())
+            .then((AddressListFromServer) => {
                 console.log(AddressListFromServer);
-                that.setState({
-                    addressList: AddressListFromServer.addressList
-                })
+                this.setState({addressList: AddressListFromServer});
+                this.setState({addressIndex: 0})
             })
-
-            .catch(ex => {
-                console.log(ex);
-            });
     };
-
-    componentDidMount() {
-
-    }
 
 
     setAddress = (offset) => {
+
+        if(this.addressIndex < 1 && offset < 0){
+            this.addressIndex += 99;
+        }
+        else if(this.addressIndex >98 && offset > 0){
+            this.addressIndex -= 99;
+        }
+        else {
             this.addressIndex += offset;
+        }
+
+
         this.setState({
             address: this.addressList[this.addressIndex]
-
         });
         console.log(this.addressIndex);
-        console.log(this.addressList)
     };
     render() {
         return (

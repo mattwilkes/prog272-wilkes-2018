@@ -24,12 +24,6 @@ class AddressShow extends Component {
                 <Text className="App-intro">Zip Code: {this.props.zip}</Text>
                 <View style={styles.buttonView}>
                     <Button
-                        onPress={(event) => this.props.setAddress(-1, event)}
-                        title="Get Data"
-                        color="#841584"
-                        accessibilityLabel="Learn more about this purple button"
-                    />
-                    <Button
                         color="#841584"
                         onPress={(event) => this.props.setAddress(-1, event)}
                         title = "Back"
