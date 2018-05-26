@@ -1,5 +1,5 @@
 const unknown = 'unknown';
-const addresses = [
+const tempAddressList = [
     {
         firstName: unknown,
         lastName: unknown,
@@ -24,4 +24,4 @@ const addresses = [
     }
 ];
 
-export default addresses;
+export default tempAddressList;

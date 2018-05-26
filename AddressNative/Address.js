@@ -10,11 +10,14 @@ import 'whatwg-fetch'
 export default class Address extends React.Component {
     constructor() {
         super();
-        this.state = {
-            addressIndex: 0,
-            addressList: null,
-            address: tempAddressList[this.addressIndex]
+        this.debug = false;
+        this.canceled = false;
+            this.addressIndex = 0;
+            this.addressList = [{}];
+            this.state = {
+                address: tempAddressList[this.addressIndex]
         };
+        this.getAddressList =this.getAddressList.bind(this);
 
 
     }
@@ -26,7 +29,7 @@ export default class Address extends React.Component {
             .then(AddressListFromServer => {
                 console.log(AddressListFromServer);
                 that.setState({
-                    addressList: AddressListFromServer.addressLiast
+                    addressList: AddressListFromServer.addressList
                 })
             })
 
@@ -37,10 +40,6 @@ export default class Address extends React.Component {
 
     componentDidMount() {
 
-        this.getAddressList =this.getAddressList.bind(this);
-        console.log(tempAddressList[this.addressIndex]);
-        console.log(this.addressIndex);
-        console.log(this.addressList[this.addressIndex]);
     }
 
 
@@ -48,15 +47,17 @@ export default class Address extends React.Component {
             this.addressIndex += offset;
         this.setState({
             address: this.addressList[this.addressIndex]
+
         });
         console.log(this.addressIndex);
+        console.log(this.addressList)
     };
     render() {
         return (
             <View style={styles.container}>
                 <View>
                     <AddressShow
-                        address={this.state.address}
+                        address={this.address}
                         setAddress={this.setAddress}
                     />
                 </View>
