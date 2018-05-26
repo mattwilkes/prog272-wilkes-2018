@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../App.css';
 import RaisedButton from 'material-ui/RaisedButton';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-import styles from './elf-styles';
+
 
 class AddressShow extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.debug = false;
         if (this.debug) {
             console.log('SHOW ADDRESS CONSTRUCTOR', this.props.address);
         }
     }
-    log(message, message2 = '', message3 = '') {
-        if (this.debug) {
-            console.log(message, message2, message3);
-        }
-    }
 
     render() {
-        this.log('SHOW ADDRESS RENDER', this.props);
         return (
             <div className="App">
                 <p className="App-intro">
@@ -42,13 +35,11 @@ class AddressShow extends Component {
                     label = "Back"
                 />
                 <RaisedButton
-                    label="Set Address"
-                    labelPosition="before"
+                    id="setAddress"
                     primary={true}
-                    icon={<ActionAndroid />}
-                    style={styles.button}
-                    onClick={this.props.setAddress}
-                />
+                    onClick={(e) => this.props.setAddress(0, e)}>
+                    Set Address
+                </RaisedButton>
                 <RaisedButton
                     id="setAddress"
                     primary={true}

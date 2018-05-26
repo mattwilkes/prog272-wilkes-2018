@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import tempAddressList from '../address-list';
 import AddressShow from '../Components/AddressShow';
-import PropTypes from 'prop-types';
 
 
 
 class Address extends Component {
-    constructor(props) {
-        super(props);
-        this.debug = false;
+    constructor() {
+        super();
         this.addressIndex = 0;
         this.addressList = null;
         this.state = {
             address: tempAddressList[this.addressIndex]
         };
-        this.getAddressList();
 
     }
 
 
     getAddressList = () => {
-        fetch('/address-list')
+        return fetch('/address-list')
             .then(response => response.json())
             .then(AddressListFromServer => {
                 console.log(AddressListFromServer);
@@ -31,32 +28,43 @@ class Address extends Component {
             });
     };
 
+    componentDidMount() {
+        this.getAddressList();
+    }
+
     setAddress = (offset) => {
-        if (this.debug) {
-            console.log('setAddress Called');
+
+        if(this.addressIndex < 1 && offset < 0){
+            this.addressIndex += 99;
+            console.log("poop")
         }
-        this.addressIndex += offset;
+        else if(this.addressIndex >98 && offset > 0){
+            this.addressIndex -= 99;
+            console.log("oppo")
+        }
+        else {
+            this.addressIndex += offset;
+            console.log("im the big gay");
+        }
+
+
         this.setState({
             address: this.addressList[this.addressIndex]
         });
+        console.log(this.addressIndex);
     };
 
+
     render() {
-        if (this.debug) {
-            console.log('ADDRESS RENDER');
-        }
         return (
-            <div className="App">
+            <div>
                 <AddressShow
                     address={this.state.address}
-                    setAddress={this.props.setAddress}
+                    setAddress={this.setAddress}
                 />
             </div>
         );
     }
 
 }
-Address.propTypes = {
-    setAddress: PropTypes.func
-};
 export default Address;

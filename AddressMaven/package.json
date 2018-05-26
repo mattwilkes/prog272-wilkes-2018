@@ -16,11 +16,22 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test": "jest --watch --coverage",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "react-test-renderer": "^16.3.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/registerServiceWorker.js",
+      "!**/elf-styles.js",
+      "!src/index.js"
+    ]
   }
 }

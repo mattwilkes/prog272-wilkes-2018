@@ -1,40 +1,60 @@
 import React from 'react';
-import addresses from './address-list';
+import tempAddressList from './address-list';
 import AddressShow from './AddressShow';
 import {Text, View} from 'react-native';
 import styles from './elf-styles';
+import 'whatwg-fetch'
+
 
 
 export default class Address extends React.Component {
-    constructor(props) {
-        super(props);
-        this.debug = false;
-        this.addressIndex = 0;
+    constructor() {
+        super();
         this.state = {
-            address: addresses[this.addressIndex]
+            addressIndex: 0,
+            addressList: null,
+            address: tempAddressList[this.addressIndex]
         };
-        this.debug = true;
+
+
     }
 
-    setAddress = () => {
-        if (this.debug) {
-            console.log('setAddress Called');
-        }
-        this.addressIndex = 1;
+    getAddressList = () => {
+        const that = this;
+        return fetch('localhost:30026/address-list')
+            .then(response => response.json())
+            .then(AddressListFromServer => {
+                console.log(AddressListFromServer);
+                that.setState({
+                    addressList: AddressListFromServer.addressLiast
+                })
+            })
 
-        this.setState({
-            address: addresses[this.addressIndex]
-        });
+            .catch(ex => {
+                console.log(ex);
+            });
     };
 
+    componentDidMount() {
+
+        this.getAddressList =this.getAddressList.bind(this);
+        console.log(tempAddressList[this.addressIndex]);
+        console.log(this.addressIndex);
+        console.log(this.addressList[this.addressIndex]);
+    }
+
+
+    setAddress = (offset) => {
+            this.addressIndex += offset;
+        this.setState({
+            address: this.addressList[this.addressIndex]
+        });
+        console.log(this.addressIndex);
+    };
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Welcome to Expo!
-                </Text>
-
-                <View className="App">
+                <View>
                     <AddressShow
                         address={this.state.address}
                         setAddress={this.setAddress}
