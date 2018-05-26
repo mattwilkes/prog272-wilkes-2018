@@ -8,7 +8,7 @@ class Address extends Component {
     constructor() {
         super();
         this.addressIndex = 0;
-        this.addressList = null;
+        this.addressList = [{}];
         this.state = {
             address: tempAddressList[this.addressIndex]
         };
@@ -29,22 +29,19 @@ class Address extends Component {
     };
 
     componentDidMount() {
-        this.getAddressList();
+        this.getAddressList()
     }
 
     setAddress = (offset) => {
 
         if(this.addressIndex < 1 && offset < 0){
             this.addressIndex += 99;
-            console.log("poop")
         }
         else if(this.addressIndex >98 && offset > 0){
             this.addressIndex -= 99;
-            console.log("oppo")
         }
         else {
             this.addressIndex += offset;
-            console.log("im the big gay");
         }
 
 
