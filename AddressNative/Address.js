@@ -8,32 +8,43 @@ import 'whatwg-fetch'
 
 
 export default class Address extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
             this.addressIndex = 0;
-            this.addressList= [{}],
             this.state = {
-
+                addressList: [{}],
                 address: tempAddressList[this.addressIndex]
         };
+        this.getAddressList = this.getAddressList.bind(this);
+        console.log('run da func')
 
 
     }
-    componentDidMount(){
-    this.getAddressList =this.getAddressList.bind(this);
 
-}
 
     getAddressList = () => {
-        return fetch('localhost:30026/address-list')
-            .then((response) => response.json())
-            .then((AddressListFromServer) => {
-                console.log(AddressListFromServer);
-                this.setState({addressList: AddressListFromServer});
-                this.setState({addressIndex: 0})
-            })
-    };
+        console.log('1');
+        const that = this;
+        console.log('2');
+        fetch('http://localhost:30026/address-list')
+    .then((result) => result.json())
 
+    .then(function(result) {
+            console.log('5');
+
+            console.log(result.result);
+            console.log('6');
+            this.addressList = result;
+            that.setState({addressList: result.result});
+            console.log('7');
+
+        })
+    };
+    componentDidMount(){
+        console.log('componeent mount');
+        this.getAddressList = this.getAddressList.bind(this);
+
+    }
 
     setAddress = (offset) => {
 
@@ -52,6 +63,7 @@ export default class Address extends React.Component {
             address: this.addressList[this.addressIndex]
         });
         console.log(this.addressIndex);
+        console.log(this.addressList[this.addressIndex])
     };
     render() {
         return (

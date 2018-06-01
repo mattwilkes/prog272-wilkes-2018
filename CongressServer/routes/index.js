@@ -25,7 +25,7 @@ router.get('/address-list', function(req, res) {
     'use strict';
     readFile(__dirname + '/address-list.json')
         .then((json) => {
-            console.log(JSON.parse(json.result))
+            console.log(JSON.parse(json.result));
             res.send(JSON.parse(json.result));
         });
 });
