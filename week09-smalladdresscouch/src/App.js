@@ -8,8 +8,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
 
-
 class App extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -19,16 +19,18 @@ class App extends Component {
             ids: []
         }
     }
+
     componentDidMount() {
-        this.db = new PouchDB('addresses');
-        this.remoteCouch = 'http://192.168.2.25:5984/addresses';
-        this.remoteCouch = false;
+        this.db = new PouchDB('address');
+        this.remoteCouch = 'http://192.168.1.23:5984/address';
+        //this.remoteCouch = false;
         this.syncDom = document.getElementById('sync-wrapper');
         this.db.changes({
             since: 'now',
             live: true
         }).on('change', this.showAddress);
     }
+
     addAddress = (data) => {
         const indexValue = this.state.addressIndex + 1;
         this.setState({addressIndex: indexValue});
@@ -44,6 +46,28 @@ class App extends Component {
             }
         });
     };
+
+    addAddressReal = () => {
+        const indexValue = this.state.addressIndex + 1;
+        this.setState({addressIndex: indexValue});
+        const address = {
+            _id: new Date().toISOString(),
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            completed: false
+        };
+        this.db.put(address, function callback(err, result) {
+            if (!err) {
+                console.log('Successfully posted a rr!');
+            }
+        });
+        this.state.ids.push(address._id);
+        this.setState({
+            firstName: address.firstName,
+            LastName: address.lastName
+        })
+    };
+
     showAddress = () => {
         const that = this;
         let ids = [];
@@ -58,34 +82,15 @@ class App extends Component {
             }
         });
     };
+
     handleFirst = event => {
         this.setState({ firstName: event.target.value });
     };
+
     handleLast = event => {
         this.setState({ lastName: event.target.value });
     };
-    addAddressReal = () => {
-        const indexValue = this.state.addressIndex + 1;
-        this.setState({addressIndex: indexValue});
-        const address = {
-            _id: new Date().toISOString(),
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            completed: false
-        };
-        this.db.put(address, function callback(err, result) {
-            if (!err) {
-                console.log('Successfully posted a r!');
-            }
-        });
-        this.state.ids.push(address._id);
-        this.setState({
-            firstName: address.firstName,
-            lastName: address.lastName,
-        })
 
-
-    };
     update = () => {
         this.db.get(this.state.ids[0])
             .then((address) => {
@@ -93,6 +98,7 @@ class App extends Component {
                 this.db.put(address);
             })
     };
+
     syncError = () => {
         this.syncDom.setAttribute('data-sync-state', 'error');
     };
@@ -103,6 +109,7 @@ class App extends Component {
         this.db.replicate.to(this.remoteCouch, opts, this.syncError);
         this.db.replicate.from(this.remoteCouch, opts, this.syncError);
     };
+
   render() {
     return (
       <div className="App">
@@ -145,6 +152,13 @@ class App extends Component {
           <Button
               color='secondary'
               variant='raised'
+              onClick={this.addAddressReal}
+          >
+              Add Address Real
+          </Button>
+          <Button
+              color='secondary'
+              variant='raised'
               onClick={this.update}
           >
               Update
@@ -156,13 +170,14 @@ class App extends Component {
           >
               Sync
           </Button>
-          <Button
-              color='secondary'
-              variant='raised'
-              onClick={this.addAddressReal()}
-          >
-              addAddressReal
-          </Button>
+          <p>{this.state.ids}</p>
+          <div id="sync-wrapper">
+              <div id="sync-success">Currently syncing</div>
+              <div id="sync-error">There was a problem syncing</div>
+          </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
       </div>
     );
   }
