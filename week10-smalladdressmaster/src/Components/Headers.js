@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import List from '@material-ui/core/List';
-import { gitItems} from './tileData';
+import { gitItems } from './tileData';
 
 const styles = {
     root: {
@@ -16,7 +16,7 @@ const styles = {
     },
     flex: {
         flex: 1
-    },
+    }
 };
 
 class Headers extends Component {
@@ -36,9 +36,7 @@ class Headers extends Component {
         );
         return (
             <div>
-                <AppBar
-                    position="static"
-                >
+                <AppBar position="static">
                     <Toolbar>
                         <IconButton
                             className={classes.menuButton}
@@ -46,9 +44,13 @@ class Headers extends Component {
                             aria-label="Menu"
                             onClick={this.handleToggle}
                         >
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
-                        <Typography variant="title" color="inherit" className={classes.flex}>
+                        <Typography
+                            variant="title"
+                            color="inherit"
+                            className={classes.flex}
+                        >
                             GitExplorer
                         </Typography>
                     </Toolbar>
@@ -62,7 +64,6 @@ class Headers extends Component {
                         {sideList}
                     </div>
                 </Drawer>
-
             </div>
         );
     }

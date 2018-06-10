@@ -14,6 +14,8 @@ class AddressShow extends Component {
     }
 
     render() {
+        );
+
         return (
             <div className="App">
                 <p className="App-intro">
@@ -53,6 +55,7 @@ class AddressShow extends Component {
                 >
                     Forward
                 </Button>
+
             </div>
         );
     }

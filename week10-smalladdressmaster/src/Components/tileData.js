@@ -8,32 +8,23 @@ import { Link } from 'react-router-dom';
 
 export const gitItems = (
     <div>
-        <ListItem
-            button
-            component={Link}
-            to="/">
+        <ListItem button component={Link} to="/">
             <ListItemIcon>
-                <InboxIcon/>
+                <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Home"/>
+            <ListItemText primary="Home" />
         </ListItem>
-        <ListItem
-            button
-            component={Link}
-            to="/address">
+        <ListItem button component={Link} to="/address">
             <ListItemIcon>
-                <StarIcon/>
+                <StarIcon />
             </ListItemIcon>
-            <ListItemText primary="Address"/>
+            <ListItemText primary="Address" />
         </ListItem>
-        <ListItem
-            button
-            component={Link}
-            to="/init-db">
+        <ListItem button component={Link} to="/init-db">
             <ListItemIcon>
-                <StarIcon/>
+                <StarIcon />
             </ListItemIcon>
-            <ListItemText primary="Initialize Database"/>
+            <ListItemText primary="Initialize Database" />
         </ListItem>
     </div>
 );

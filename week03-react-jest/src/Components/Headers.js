@@ -14,7 +14,7 @@ class Headers extends Component {
     handleToggle = () => this.setState({ open: !this.state.open });
     render() {
         return (
-            <header >
+            <header>
                 <div>
                     <AppBar
                         title="Address Maven"
@@ -27,17 +27,17 @@ class Headers extends Component {
                         open={this.state.open}
                         onRequestChange={this.handleToggle}
                     >
-                        <AppBar title="Address Maven"/>
+                        <AppBar title="Address Maven" />
 
                         <MenuItem
-                            primaryText='Address'
-                            containerElement={<Link to="/"/>}
+                            primaryText="Address"
+                            containerElement={<Link to="/" />}
                             onClick={this.handleToggle}
                         />
 
                         <MenuItem
-                            primaryText='Get File'
-                            containerElement={<Link to="/get-file"/>}
+                            primaryText="Get File"
+                            containerElement={<Link to="/get-file" />}
                             onClick={this.handleToggle}
                         />
                     </Drawer>

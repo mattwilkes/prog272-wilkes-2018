@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import AddressShow from "./AddressShow"
+import AddressShow from './AddressShow';
 import '../App.css';
 
-
-
 class Address extends Component {
-
     constructor(props) {
         super(props);
         this.canceled = false;
         this.state = {
             editOpen: false,
             namesIndex: 0,
-            names: [{
-                _id: 'unknown',
-                firstName: 'unknown',
-                lastName: 'unknown'
-            }]
+            names: [
+                {
+                    _id: 'unknown',
+                    firstName: 'unknown',
+                    lastName: 'unknown'
+                }
+            ]
         };
     }
     componentDidMount() {
@@ -55,14 +54,14 @@ class Address extends Component {
             });
     };
 
-    setAddress = (offset) => {
+    setAddress = offset => {
         const value = this.state.namesIndex + offset;
         if (value >= 0 && value <= this.state.names.length - 1) {
             this.setState({ namesIndex: value, open: this.state.editOpen });
         }
     };
 
-    save = (name) => {
+    save = name => {
         console.log(name);
         this.props.dataManager
             .save(name)
@@ -74,7 +73,7 @@ class Address extends Component {
             });
     };
 
-    delete = (name) => {
+    delete = name => {
         this.props.dataManager
             .delete(name._id)
             .then(function(result) {
@@ -84,8 +83,6 @@ class Address extends Component {
                 console.log(err);
             });
     };
-
-
 
     render() {
         return (
