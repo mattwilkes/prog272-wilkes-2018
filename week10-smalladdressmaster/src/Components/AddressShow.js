@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import AddressFields from "./AddressEditFieldss"
-
+import AddressEdit from './AddressEdit';
 import '../App.css';
-
 import Button from '@material-ui/core/Button';
 
 class AddressShow extends Component {
@@ -41,7 +39,7 @@ class AddressShow extends Component {
     };
     render() {
         const editDialog = this.state.editOpen ? (
-            <AddressFields
+            <AddressEdit
                 address={this.props.name}
                 open={this.state.editOpen}
                 addressEdit={this.addressEdit}
@@ -93,13 +91,13 @@ class AddressShow extends Component {
                         Delete
                     </Button>
                     <Button
-                    color="secondary"
-                    variant="raised"
-                    onClick={() => this.setState({editOpen: true})}
+                        color="secondary"
+                        variant="raised"
+                        onClick={() => this.setState({editOpen: true})}
                     >
                     Edit
-                </Button>
-                {editDialog}
+                    </Button>
+                    {editDialog}
                 </div>
             </div>
         );
