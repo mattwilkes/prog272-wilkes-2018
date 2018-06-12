@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AddressEdit from './AddressEdit';
 import '../App.css';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
 class AddressShow extends Component {
     constructor(props) {
@@ -45,12 +46,16 @@ class AddressShow extends Component {
                 addressEdit={this.addressEdit}
             />
         ) : (
-            <div/>
+            <div />
         );
         return (
             <div>
-                <p>{this.props.name.firstName}</p>
-                <p>{this.props.name.lastName}</p>
+                <p>First Name: {this.props.name.firstName}</p>
+                <p>Last Name: {this.props.name.lastName}</p>
+                <p>Street: {this.props.name.street}</p>
+                <p>City: {this.props.name.city}</p>
+                <p>State: {this.props.name.state}</p>
+                <p>Zip Code: {this.props.name.zip}</p>
                 <Button
                     color="secondary"
                     variant="raised"
@@ -93,9 +98,9 @@ class AddressShow extends Component {
                     <Button
                         color="secondary"
                         variant="raised"
-                        onClick={() => this.setState({editOpen: true})}
+                        onClick={() => this.setState({ editOpen: true })}
                     >
-                    Edit
+                        Edit
                     </Button>
                     {editDialog}
                 </div>
@@ -103,5 +108,20 @@ class AddressShow extends Component {
         );
     }
 }
+AddressShow.propTypes = {
+    addressChangedByUser: PropTypes.func,
+    save: PropTypes.func,
+    showAddress: PropTypes.func,
+    setAddress: PropTypes.func,
+    delete: PropTypes.func,
+    name: PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        street: PropTypes.string,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        zip: PropTypes.string
+    })
+};
 
 export default AddressShow;

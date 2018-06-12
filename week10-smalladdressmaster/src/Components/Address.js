@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddressShow from './AddressShow';
 import '../App.css';
+import PropTypes from 'prop-types';
 
 class Address extends Component {
     constructor(props) {
@@ -13,7 +14,11 @@ class Address extends Component {
                 {
                     _id: 'unknown',
                     firstName: 'unknown',
-                    lastName: 'unknown'
+                    lastName: 'unknown',
+                    street: 'unknown',
+                    city: 'unknown',
+                    state: 'unknown',
+                    zip: 'unknown'
                 }
             ]
         };
@@ -45,7 +50,11 @@ class Address extends Component {
                         _id: address._id,
                         _rev: address._rev,
                         firstName: address.firstName,
-                        lastName: address.lastName
+                        lastName: address.lastName,
+                        street: address.street,
+                        city: address.city,
+                        state: address.state,
+                        zip: address.zip
                     };
                 });
                 if (!this.canceled) {
@@ -96,5 +105,12 @@ class Address extends Component {
         );
     }
 }
+Address.propTypes = {
+    dataManager: PropTypes.shape({
+        watchChanges: PropTypes.string,
+        save: PropTypes.string,
+        delete: PropTypes.string
+    })
+};
 
 export default Address;

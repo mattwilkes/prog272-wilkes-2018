@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddressEditFields from './AddressEditFieldss';
 import addressList from '../address-list';
-
+import PropTypes from 'prop-types';
 
 export default class AddressEdit extends React.Component {
     state = {
@@ -22,7 +22,6 @@ export default class AddressEdit extends React.Component {
     userCanceledDialog = () => {
         this.props.addressEdit(null);
     };
-
 
     addressChangedByUser = (v, e) => {
         this.props.address[v] = e.target.value;
@@ -50,10 +49,16 @@ export default class AddressEdit extends React.Component {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.userCanceledDialog} color="primary">
+                        <Button
+                            onClick={this.userCanceledDialog}
+                            color="primary"
+                        >
                             Cancel
                         </Button>
-                        <Button onClick={this.userClosedDialogNormal} color="primary">
+                        <Button
+                            onClick={this.userClosedDialogNormal}
+                            color="primary"
+                        >
                             Ok
                         </Button>
                     </DialogActions>
@@ -62,3 +67,8 @@ export default class AddressEdit extends React.Component {
         );
     }
 }
+AddressEdit.propTypes = {
+    open: PropTypes.func,
+    addressEdit: PropTypes.func,
+    address: PropTypes.func
+};

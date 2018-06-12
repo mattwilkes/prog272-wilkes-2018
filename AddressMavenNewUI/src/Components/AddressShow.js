@@ -14,7 +14,6 @@ class AddressShow extends Component {
     }
 
     render() {
-        );
 
         return (
             <div className="App">
