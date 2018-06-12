@@ -1,7 +1,8 @@
 import dataManager from './FakeDataManager';
 import React from 'react';
 import addresses from './address-list';
-import { App } from '/App';
+import Address from '/address';
+import { shallow } from 'enzyme';
 
 let wrapper = null;
 
